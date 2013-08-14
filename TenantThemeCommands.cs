@@ -37,7 +37,11 @@ namespace TenantThemeActivator
                         DataConnectionString = tenant.DataConnectionString,
                         DataTablePrefix = tenant.DataTablePrefix,
                         State = tenant.State,
-                        Themes = themeIds
+                        Themes = themeIds,
+                        EncryptionAlgorithm = tenant.EncryptionAlgorithm,
+                        EncryptionKey = tenant.EncryptionKey,
+                        HashAlgorithm = tenant.HashAlgorithm,
+                        HashKey = tenant.HashKey
                     });
                 Context.Output.WriteLine("Tenant {0} updated", TenantName);
 
