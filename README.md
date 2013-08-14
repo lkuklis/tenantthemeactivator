@@ -1,2 +1,2 @@
-tenantthemeactivator
-====================
+# Tenant Theme Activator
+
