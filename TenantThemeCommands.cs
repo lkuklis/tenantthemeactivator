@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
 using Orchard.Commands;
 using Orchard.Environment.Configuration;
 using Orchard.MultiTenancy.Services;
@@ -14,14 +13,17 @@ namespace TenantThemeActivator
         {
             _tenantService = tenantService;
         }
+        [OrchardSwitch]
+        public string TenantName { get; set; }
 
         [CommandName("tenant themes enable")]
-        [CommandHelp(@"tenant themes enable <themeIds>")]
+        [CommandHelp(@"tenant themes enable <themeids> [/TenantName:tenant_name] \n\r\d theme ids are comma separated ")]
+        [OrchardSwitches("TenantName")]
         public void ThemeEnable(string names)
         {
             string[] themeIds = names.Split(',');
 
-            var tenant = _tenantService.GetTenants().FirstOrDefault(ss => ss.Name == ShellSettings.DefaultName);
+            var tenant = _tenantService.GetTenants().FirstOrDefault(ss => ss.Name == TenantName);
 
             if (tenant != null)
             {
@@ -37,12 +39,12 @@ namespace TenantThemeActivator
                         State = tenant.State,
                         Themes = themeIds
                     });
-                Context.Output.WriteLine("Tenant {0} updated", ShellSettings.DefaultName);
+                Context.Output.WriteLine("Tenant {0} updated", TenantName);
 
             }
             else
             {
-                Context.Output.WriteLine("There is no tenant named: {0}", ShellSettings.DefaultName);
+                Context.Output.WriteLine("There is no tenant named: {0}", TenantName);
             }
         }
     }
