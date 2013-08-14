@@ -17,7 +17,6 @@ namespace TenantThemeActivator
 
         [CommandName("tenant themes enable")]
         [CommandHelp(@"tenant themes enable <themeIds>")]
-        [OrchardSwitch(ADVF"ds")]
         public void ThemeEnable(string names)
         {
             string[] themeIds = names.Split(',');
