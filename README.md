@@ -1,2 +1,2 @@
-# Tenant Theme Activator
+# Orchard Tenant Theme Activator
 
